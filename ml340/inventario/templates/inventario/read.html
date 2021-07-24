@@ -1,0 +1,13 @@
+{% extends "inventario/index.html" %}
+
+{% block content %}
+<h1>Elementos del inventario</h1>
+
+  <p>Los Elementos del inventario son los siguientes.</p>
+
+  <ul>
+    <li><strong>Total de Items:</strong> {{ num_items }}</li>
+    <li><strong>Items:</strong> {{ items }}</li>
+  </ul>
+
+{% endblock %}
