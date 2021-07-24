@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'equipos.apps.EquiposConfig',
+    'inventario.apps.InventarioConfig',
+    'prestamos.apps.PrestamosConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
