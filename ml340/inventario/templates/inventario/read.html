@@ -15,13 +15,12 @@
         </tr>
         {%for item in item_list %}
              <tr>
-               <td>{{item.name}}</td>
+               <td><a href="{% url 'inventario:read' %}/{{item.id}}">{{item.name}}</a></td>
                <td>{{item.category}}</td>
                <td>{{item.serial_number}}</td>
                <td>{{item.serial_andes}}</td>
                <td>{{item.notes}}</td>
                <td style="width:100px"></td>
-    
                </td>
              </tr>
         {%endfor%}

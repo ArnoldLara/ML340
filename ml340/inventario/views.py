@@ -26,6 +26,9 @@ def create(request):
     form = ItemsForm(request.POST or None)
     if form.is_valid():
         form.save()
+        return HttpResponseRedirect("/inventario/read")
+
+        
           
     context['form']= form
     return render(request, 'inventario/create.html', context)
