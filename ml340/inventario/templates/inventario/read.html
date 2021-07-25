@@ -1,13 +1,34 @@
-{% extends "inventario/index.html" %}
+{% extends "inventario/base_generic.html" %}
 
 {% block content %}
-<h1>Elementos del inventario</h1>
+    <h1>Registro de elementos en Inventario</h1>
 
-  <p>Los Elementos del inventario son los siguientes.</p>
+    {% if item_list %}
+   
+      <table class="table">
+        <tr class="thead-dark">
+          <th>Name</th>
+          <th>Category</th>
+          <th>serial_number</th>
+          <th>serial_andes</th>
+          <th>notes</th>
+        </tr>
+        {%for item in item_list %}
+             <tr>
+               <td>{{item.name}}</td>
+               <td>{{item.category}}</td>
+               <td>{{item.serial_number}}</td>
+               <td>{{item.serial_andes}}</td>
+               <td>{{item.notes}}</td>
+               <td style="width:100px"></td>
+    
+               </td>
+             </tr>
+        {%endfor%}
+    
+        </table>
 
-  <ul>
-    <li><strong>Total de Items:</strong> {{ num_items }}</li>
-    <li><strong>Items:</strong> {{ items }}</li>
-  </ul>
-
+    {% else %}
+      <p>There are no items in the library.</p>
+    {% endif %} 
 {% endblock %}
