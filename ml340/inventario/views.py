@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Specification, Manufacturer, Category, Network, Status, Item
 # Create your views here.
 from django.views import generic
-from .forms import ItemsForm
+from .forms import ItemsForm, UpdateItemsForm
 
 
 def index(request):
@@ -34,7 +34,7 @@ def create(request):
     return render(request, 'inventario/create.html', context)
     #return HttpResponse("Inventario Create")
 
-class read(generic.ListView,):
+class read(generic.ListView):
     model = Item
     template_name = 'inventario/read.html'
 
@@ -49,7 +49,7 @@ def update(request,id):
 
     obj = get_object_or_404(Item, id=id)
 
-    form = ItemsForm(request.POST or None, instance=obj)
+    form = UpdateItemsForm(request.POST or None, instance=obj)
 
     if form.is_valid():
         form.save()

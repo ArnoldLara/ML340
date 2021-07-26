@@ -2,20 +2,20 @@
 
 {% block content %}
 
+<h1>Vista en detalle del Elemento</h1>
 <div class="main">
       
     <!-- Specify fields to be displayed -->
-    {{ data.name }}<br/>
-    {{ data.manufacturer }}<br/>
-    {{ data.category }}<br/>
-    {{ data.serial_number }}<br/>
-    {{ data.serial_andes }}<br/>
-    {{ data.specs }}<br/>
-    {{ data.net }}<br/>
-    {{ data.notes }}<br/>
+    <strong>Name: </strong>{{ data.name }}<br/>
+    <strong>Fabricante: </strong>{{ data.manufacturer }}<br/>
+    <strong>Categoria: </strong>{{ data.category }}<br/>
+    <strong>Serial Number: </strong>{{ data.serial_number }}<br/>
+    <strong>Serial UniAndes: </strong> {{ data.serial_andes }}<br/>
+    <strong>Modelo: </strong>{{ data.specs }}<br/>
+    <strong>MAC: </strong>{{ data.net }}<br/>
+    <strong>Comentarios: </strong>{{ data.notes }}<br/>
     <a href="/inventario/delete/{{data.id}}">Borrar Elemento</a> <br/>
     <a href="/inventario/update/{{data.id}}">Actualizar información de Elemento</a> <br/>
-             
 </div>
 
 {% endblock %}
