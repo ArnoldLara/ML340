@@ -26,7 +26,17 @@ def create(request):
     form = ItemsForm(request.POST or None)
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect("/inventario/read")
+        #Se obtiene el ultimo registro de la base de datos
+        item_added = Item.objects.latest('id')
+        # Se obtiene la categoria del ultimo registro
+        cat = item_added.category
+        #Se asigna el nombre tomando la categoria y la cantidad de elementos de este tipo en la BD
+        nombre = str(cat) +'-'+str(Item.objects.filter(category__name__icontains=cat).count())
+
+        #Se actualiza el nombre en la BD
+        item_added.name = nombre
+        item_added.save()
+        return HttpResponseRedirect("/inventario/read/"+str(item_added.id))
 
         
           

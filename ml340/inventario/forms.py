@@ -14,7 +14,6 @@ class ItemsForm(forms.ModelForm):
 		fields = [
 			"category",
 			"manufacturer",
-			"name",
 			"serial_number",
 			"serial_andes",
 			"notes",
