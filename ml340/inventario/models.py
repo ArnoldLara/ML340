@@ -27,14 +27,14 @@ class Category(models.Model):
         return self.name
 
 class Network(models.Model):
-    articulo = models.OneToOneField('Item',on_delete=models.SET_NULL, null=True)
+    articulo = models.OneToOneField('Item',on_delete=models.CASCADE, null=True)
     mac = models.CharField(max_length=50)
     ip = models.CharField(max_length=50, blank=True)
     def __str__(self):
         return self.mac
 
 class Status(models.Model):
-    item = models.OneToOneField('Item',on_delete=models.SET_NULL, null=True)
+    item = models.OneToOneField('Item',on_delete=models.CASCADE, null=True)
     LOAN_STATUS = (
         ('m', 'Maintenance'),
         ('o', 'On loan'),
