@@ -23,6 +23,9 @@ class Manufacturer(models.Model):
 class Category(models.Model):
     
     name = models.CharField(max_length=50)
+    quantity = models.PositiveIntegerField(default=0)
+    #Historico de cantidad para asignar nombres
+    h_quantity = models.PositiveIntegerField(default=0)
     def __str__(self):
         return self.name
 

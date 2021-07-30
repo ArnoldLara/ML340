@@ -30,8 +30,13 @@ def create(request):
         item_added = Item.objects.latest('id')
         # Se obtiene la categoria del ultimo registro
         cat = item_added.category
+        # Se instancia el objeto de la base de datos para aumentar la cantidad
+        q = Category.objects.get(name=cat)
+        q.quantity = q.quantity + 1
+        q.h_quantity = q.h_quantity + 1
+        q.save()
         #Se asigna el nombre tomando la categoria y la cantidad de elementos de este tipo en la BD
-        nombre = str(cat) +'-'+str(Item.objects.filter(category__name__icontains=cat).count())
+        nombre = str(cat) +'-'+str(q.h_quantity)
 
         #Se actualiza el nombre en la BD
         item_added.name = nombre
@@ -78,7 +83,17 @@ def delete(request, id):
     obj=get_object_or_404(Item, id = id)
 
     if request.method == "POST":
+        #Se obtiene el ultimo registro de la base de datos
+        item_added = Item.objects.get(id=id)
+        # Se obtiene la categoria del ultimo registro
+        cat = item_added.category
+        q = Category.objects.get(name=cat)
+        q.quantity = q.quantity - 1
+        if q.quantity >=0: q.save()
+
         obj.delete()
+        # Se instancia el objeto de la base de datos para aumentar la cantidad
+        
         return HttpResponseRedirect("/inventario/read")
 
     return render(request, 'inventario/delete.html', context)
