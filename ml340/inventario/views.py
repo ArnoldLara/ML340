@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .models import Specification, Manufacturer, Category, Network, Status, Item
+from .models import Specification, Manufacturer, Category, Status, Item
 # Create your views here.
 from django.views import generic
 from .forms import ItemsForm, UpdateItemsForm
@@ -74,8 +74,6 @@ def update(request,id):
 
     return render(request,'inventario/update.html',context)
 
-
-    
 
 def delete(request, id):
     context={}

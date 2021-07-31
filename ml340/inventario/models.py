@@ -29,12 +29,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-class Network(models.Model):
-    articulo = models.OneToOneField('Item',on_delete=models.CASCADE, null=True)
-    mac = models.CharField(max_length=50)
-    ip = models.CharField(max_length=50, blank=True)
-    def __str__(self):
-        return self.mac
 
 class Status(models.Model):
     item = models.OneToOneField('Item',on_delete=models.CASCADE, null=True)
@@ -55,9 +49,11 @@ class Item(models.Model):
     manufacturer = models.ForeignKey(Manufacturer, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=50)
     serial_number = models.CharField(unique=True, max_length=50)
-    serial_andes = models.DecimalField(unique=True, max_digits=50, decimal_places=0)
+    serial_andes = models.DecimalField(blank=True, unique=True, max_digits=50, decimal_places=0)
     specs = models.ForeignKey(Specification,on_delete=models.SET_NULL, null=True, blank=True)
-    net = models.OneToOneField(Network,on_delete=models.SET_NULL, null=True, blank=True)
+    mac = models.CharField(max_length=17, blank=True, help_text="4a:c6:b2:40:89:f9")
+    ip = models.CharField(max_length=15, blank=True, help_text="172.21.99.54")
+    reserva_ip = models.BooleanField(default=False)
     notes = models.CharField(max_length=1000, blank=True)
     def __str__(self):
         return self.name

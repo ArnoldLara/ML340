@@ -36,6 +36,8 @@ class UpdateItemsForm(forms.ModelForm):
 			"serial_number",
 			"serial_andes",
 			"specs",
-			"net",
+			"mac",
+			"ip",
+			"reserva_ip",
 			"notes",
 		]
